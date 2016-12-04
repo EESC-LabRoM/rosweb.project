@@ -13,10 +13,12 @@
   <title>ROSWeb Project</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap-social.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="styles.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -42,6 +44,8 @@
     </ul>
   </nav>
 
+  <!-- how to use bootstrap tabs: http://getbootstrap.com/javascript/#tabs -->
+
 
 
   <div class="container">
@@ -53,25 +57,15 @@
       <div>
 
         <h3>Requirements</h3>
-        <h4>Install NodeJS</h4>
+        <p>Install NodeJS</p>
         <code>curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -</code>
         <br>
         <code>sudo apt-get install -y nodejs</code>
         <br>
         <br>
 
-        <h4>Suggestion</h4>
-
-        <p>Install Google Chrome Web Browser (better to debug websockets comm)</p>
-        <code>wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -</code>
-        <br>
-        <code>sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'</code>
-        <br>
-        <code>sudo apt-get update</code>
-        <br>
-        <code>sudo apt-get install google-chrome-stable</code>
-        <br>
-        <br>
+        <h5>Suggestion</h5>
+        <p>Use a Google Chrome Web Browser version (better to debug websockets comm)</p>
 
         <h3>Setup environment</h3>
 
@@ -117,6 +111,12 @@
         <code>gulp watch</code>
         <br>
         <br>
+
+        <h3>Did you have any problem following this instructions?</h3>
+        <p>Please, open an issue in our repository, we'll try to fix it as soon as possible!</p>
+        <a class="btn btn-block btn-social btn-github" target="_blank" href="http://www.github.com/EESC-LabRoM/rosweb">
+          <span class="fa fa-github"></span> See the project on GitHub
+        </a>
       </div>
     </div>
 
@@ -139,7 +139,7 @@
   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
     crossorigin="anonymous"></script>
-  <script src="bootstrap.min.js"></script>
+  <script src="css/bootstrap.min.js"></script>
 </body>
 
 </html>
