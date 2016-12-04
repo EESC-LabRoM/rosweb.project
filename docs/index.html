@@ -13,13 +13,15 @@
   <title>ROSWeb Project</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap-social.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="styles.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body id="index">
 
   <nav class="navbar navbar-static-top navbar-dark bg-inverse">
     <a class="navbar-brand" href="#">ROSWeb</a>
@@ -50,7 +52,12 @@
       <p>With the goal to make robots accessible from the web, ROSWeb brings the available RobotWebTools Widgets in a single
         system! In just a few minutes it is possible to access all your robotics data on our web supervisory system. It can
         be used locally or as far as you want to!</p>
-      <p><a class="btn btn-primary btn-lg" href="#anchor-features" role="button">Learn more</a></p>
+      <p>
+        <a class="btn btn-primary btn" href="#anchor-features" role="button">Learn more</a>
+        <a class="btn btn-block btn-social btn-github" target="_blank" href="http://www.github.com/EESC-LabRoM/rosweb">
+          <span class="fa fa-github"></span> See the project on GitHub
+        </a>
+      </p>
     </div>
   </div>
 
@@ -70,7 +77,8 @@
         <h3>Accessibility for RobotWebTools widgets</h3>
         <br>
         <p class="img"><img src="img/rwt.jpg" /></p>
-        <p>In order to provide an easier experience for <a href="http://www.robotwebtools.org/" target="_blank">RobotWebTools.org</a>          widgets. ROSWeb uses rosbridge as transport and roslibjs to convert JSON ROS messages to JavaScript variables. Most ROS features on web!</p>
+        <p>In order to provide an easier experience for <a href="http://www.robotwebtools.org/" target="_blank">RobotWebTools.org</a>          widgets, ROSWeb uses rosbridge as transport and roslibjs to convert JSON ROS messages to JavaScript variables.
+          Most ROS features on web!</p>
       </div>
       <div class="col-md-4">
         <h3>Create and save your workspaces</h3>
@@ -84,7 +92,7 @@
       <br>
       <h3>Start using in a few minutes!</h3>
       <br>
-      <p style="text-align:center;"><a class="btn btn-lg btn-primary" href="#" role="button">How to use it?</a></p>
+      <p style="text-align:center;"><a class="btn btn-lg btn-primary" href="./howtouse.html" role="button">How to use it?</a></p>
     </div>
 
     <br>
@@ -138,7 +146,7 @@
         <br>
         <h3>Get involved!</h3>
         <br>
-        <p style="text-align:center;"><a class="btn btn-lg btn-primary" href="#" role="button">How to contribute?</a></p>
+        <p style="text-align:center;"><a class="btn btn-lg btn-primary" href="./getinvolved.html" role="button">How to contribute?</a></p>
         <br>
       </div>
     </div>
@@ -160,7 +168,7 @@
   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
     crossorigin="anonymous"></script>
-  <script src="bootstrap.min.js"></script>
+  <script src="css/bootstrap.min.js"></script>
 </body>
 
 </html>

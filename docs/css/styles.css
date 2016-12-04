@@ -1,0 +1,29 @@
+#index div.row h2, #index div.row h3 {
+  text-align:center;
+}
+#index div.row p {
+  text-align: justify;
+}
+#index div.row p.img {
+  text-align:center;
+}
+#index div.row p.img img {
+  max-width:100%;
+}
+
+#index div.row p.img-small img {
+  float:left;
+  max-height:170px;
+  margin:3%;
+  max-width:40%;
+}
+
+*.clearfix {
+  clear:both;
+}
+
+.btn-social {
+  display:inline-block;
+  width:auto;
+  color:#fff !important;
+}
