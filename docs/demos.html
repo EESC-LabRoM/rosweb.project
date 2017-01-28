@@ -21,7 +21,7 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body id="demos">
 
   <nav class="navbar navbar-static-top navbar-dark bg-inverse">
     <a class="navbar-brand" href="#">ROSWeb</a>
@@ -55,6 +55,20 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Turtlesim ActionLib</h3>
+        <p>In this example, it is shown how to control and monitor a turtle robot using the Turtlesim simulator.</p>
+        <ol>
+          <li>Launch <u>rosbridge_websockets.launch</u> file from <u>rosbridge_server</u> package</li>
+          <li>Open <a href="#" target="_blank">ROSWeb application</a> and connect to your server. If you are openning the application at the same machine, use <b>ws://localhost:9090</b>, otherwise change it to <b>ws://&lt;rosbridge_server_IP&gt;:9090</b></li>
+          <li>Connect to the server using the connection button. It will become green.</li>
+          <li>Use the widgets that best fits to you. In the video below it is used a topic viewer to show the turtle's pose and an ActionLib Tool to send waypoiint commands.</li>
+        </ol>
+        <iframe width="auto" height="250" src="https://www.youtube.com/embed/5jQErFRxQFo" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
     <br>
   </div>
 
@@ -72,9 +86,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
     crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
-    crossorigin="anonymous"></script>
-  <script src="css/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
+  crossorigin="anonymous"></script>
+<script src="css/bootstrap.min.js"></script>
 </body>
 
 </html>

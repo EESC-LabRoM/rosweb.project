@@ -27,3 +27,11 @@
   width:auto;
   color:#fff !important;
 }
+
+#demos div iframe {
+  width:100%;
+}
+
+#demos div p, #demos div li {
+  text-align: justify;
+}
