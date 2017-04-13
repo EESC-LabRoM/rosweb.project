@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
+
+  <title>ROSWeb Project</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap-social.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-static-top navbar-dark bg-inverse">
+    <a class="navbar-brand" href="#">ROSWeb</a>
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="./index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./howtouse.html">How to use?</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./demos.html">Demos</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">How to contribute?</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="./rosweb_overview.html">ROSWeb Overview</a>
+          <a class="dropdown-item" href="./creating_widgets.html">Creating Widgets</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./aboutus.html">About us</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- how to use bootstrap tabs: http://getbootstrap.com/javascript/#tabs -->
+
+
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <br>
+      <h2 id="anchor-features">How to contribute?</h2>
+      <div class="p-2">
+        <p>Take a look at the software overview, have an idea about how it works and start contributing.</p>
+        <p>You can also go directly to the public repository page and start looking at the <a href="https://github.com/EESC-LabRoM/rosweb" target="_blank">code</a></p>
+        <p>If you already know the software, jump the the <a href="#start-developing">development section</a></p>
+      </div>
+      <h3>Software Overview</h3>
+      <div id="software-overview" class="p-2">
+        <div class="p-2">
+          <p><b>ROSWeb</b> is a web application developed using HTML, CSS and JavaScript. It is a supervisory system that groups
+            widgets previous developed and new widgets created to improve the user experience when interacting with ROS through
+            a Web Browser.</p>
+          <p>Its architecture was developed from the scratch, so no framework was used to create the project.</p>
+          <p>To automatize some development tasks, it was used <a href="http://gulpjs.com/" target="_blank">GulpJS</a>, which
+            is a <a href="http://npmjs.com/" target="_blank">NPM package</a>. It's not a problem if you are not acquainted
+            with <b>gulp</b> or <b>NPM</b>. They must be configured before starting the development, but you won't need to
+            change their settings, unless your objective is to improve the development workflow.</p>
+        </div>
+
+        <h4>About the system</h4>
+        <div class="p-2">
+          <p>All <b>ROSWeb</b> supervisory system behavior and functionalities were coded in <a href="https://www.typescriptlang.org/"
+              target="_blank">TypeScript</a> and compiled by a gulp task. Those files are inside the <code>/src</code> folder,
+            which is described below:</p>
+
+          <h5>TypeScript structure</h5>
+          <div class="p-2">
+            <p>TypeScript code is divided in the following folders:</p>
+            <ul>
+              <li><b>classmodel</b> - Parent classes to be inherited</li>
+              <li><b>events</b> - Classes that handle all events in the system. They are instantiated just once in the main.ts
+                file
+              </li>
+              <li><b>helpers</b> - Methods that can be useful for other classes</li>
+              <li><b>interface</b> - Interfaces to be used as model by classes</li>
+              <li><b>model</b> - Classes that represents the objects in the screen</li>
+              <li><b>super</b> - These classes are instantiated just once as global variables. General purpose</li>
+              <li><b>types</b> - This folder stores types that are used by other classes. These types are used in order to save
+                code and make it easier to maintain</li>
+              <li><b>typings</b> - Store <code>.d.ts</code> files. Used by TypeScript compiler</li>
+            </ul>
+          </div>
+
+          <h5>Templates</h5>
+          <div class="p-2">
+            <p>
+              The dynamic content is rendered by <a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a>. Template
+              files are stored at <code>/src/hbs</code>. They are interpreted by a gulp task and compressed into a single
+              javascript file, that is used by the application.
+            </p>
+          </div>
+
+          <h5>JavaScript Libraries</h5>
+          <div class="p-2">
+            <p>All JavaScript libraries are found at <code>/src/js</code> folder. The libraries used by the core of the application
+              must have a <code>.d.ts</code> file related, to be interpreted by a TypeScript compiler. These libraries are:</p>
+            <ul>
+              <li>Handlebars</li>
+              <li>jQuery</li>
+              <li>Roslib</li>
+            </ul>
+            <p>Other libraries used by widgets, written in JavaScript, or another JavaScript library, but not directly by the
+              application (which is in TypeScript), are:</p>
+            <ul>
+              <li>EventEmitter2 - used by Roslib</li>
+              <li>MJpegCanvas - used by Camera Viewer Widget</li>
+              <li>Ros3D - used by ROS 3D Viewer Widget</li>
+            </ul>
+            <p>If you are developing a new widget that depends on a third library, this is the correct place to put the necessary
+              files.
+            </p>
+          </div>
+
+          <h5>Cascading Style Sheet (CSS)</h5>
+          <div class="p-2">
+            <p>For writting the styles, it was chosen <a href="http://sass-lang.com/" target="_blank">SASS</a> extension. The
+              rules are in <code>/src/sass</code> in separated files, in order to organize them. A gulp task is in charge
+              to compile them and compress into a single file. The file <code>/src/sass/main.scss</code> imports the other
+              files.
+            </p>
+          </div>
+
+          <h5>Images</h5>
+          <div class="p-2">
+            <p>All the images are inside the <code>/src/img</code> folder. After compiling the code, a gulp task copy all images
+              to the <code>/dist</code> folder, where the application runs. You just need to place the files here and restart
+              the gulp task to copy it.</p>
+          </div>
+
+        </div>
+
+        <h4>About widgets</h4>
+        <p>Widgets are the most important part of the system. ROSWeb itself only hosts a lot of widgets that can be useful for
+          your ROS application.</p>
+        <div class="p-2">
+          <h5>Widget Structure</h5>
+          <div class="p-2">
+            <p>All existing widgets are placed in <code>/src/widgets</code>. They are basically generated from 3 files:
+              <ul>
+                <li>Template file - <code>index.hbs</code></li>
+                <li>Stylesheet file - <code>main.scss</code></li>
+                <li>JavaScript or TypeScript file - <code>main.js</code>/<code>main.ts</code></li>
+              </ul>
+              <p>It is possible to create new files to organize your widget or even to use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API"
+                  target="_blank">webworkers</a>, like the LaserScanner Viewer Widget does. Just make sure those files will
+                be used by the <code>main.js</code> file.</p>
+          </div>
+          <h5>Creating new Widgets</h5>
+          <div class="p-2">
+            <p>We have a tutorial for creating new widgets, you can see it <a href="new_widget.html" target="_blank">here</a>.</p>
+            <p>It is always interesting to take a look at the <a href="https://github.com/EESC-LabRoM/rosweb/tree/master/src/widgets"
+                target="_blank">existing widgets</a> to see how things work.</p>
+            <p>After creating a new widget, you need to add it to the method <code>_initWorkspace()</code> at the file <code>/src/ts/model/workspace.ts</code></p>
+          </div>
+        </div>
+      </div>
+
+      <h3 id="start-developing">
+        Start developing
+        <!--<button class="btn btn-primary" data-toggle="collapse" data-target="#config-environment">More..</button>-->
+      </h3>
+      <div id="config-environment" class="p-2">
+        <h4>Configuring the environment</h4>
+        <div class="p-2">
+          <p>Basically, you need to install the dependencies using <b>NPM</b> commands and install <b>Gulp</b> to run the necessary
+            task during the development.</p>
+          <p>All the necessary steps are described in this <a href="https://github.com/EESC-LabRoM/rosweb/blob/master/CONTRIBUTING.md"
+              target="_blank">contributing.md</a> file, in the project repository.</p>
+        </div>
+      </div>
+
+      <h3>Did you have any doubt or suggestion reading this page?</h3>
+      <p>This page is generated by a GitHub repository, you can submit changes here or even create an Issue and we'll fix it
+        as soon as possible!</p>
+      <a class="btn btn-block btn-social btn-github" target="_blank" href="http://www.github.com/EESC-LabRoM/roswebpage">
+        <span class="fa fa-github"></span> ROSWeb Page Repository
+      </a>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="container">
+    <footer>
+      <p>&copy; Company 2016</p>
+    </footer>
+  </div>
+  <!-- /container -->
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
+    crossorigin="anonymous"></script>
+  <script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
+    crossorigin="anonymous"></script>
+  <script src="css/bootstrap.min.js"></script>
+</body>
+
+</html>

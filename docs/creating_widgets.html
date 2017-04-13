@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
+
+  <title>ROSWeb Project</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap-social.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-static-top navbar-dark bg-inverse">
+    <a class="navbar-brand" href="#">ROSWeb</a>
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="./index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./howtouse.html">How to use?</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./demos.html">Demos</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">How to contribute?</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="./rosweb_overview.html">ROSWeb Overview</a>
+          <a class="dropdown-item" href="./creating_widgets.html">Creating Widgets</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./aboutus.html">About us</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- how to use bootstrap tabs: http://getbootstrap.com/javascript/#tabs -->
+
+
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <br>
+      <h2 id="anchor-features">Creating Widgets</h2>
+      <div class="p-2">
+        <p>In this tutorial, we show how to create a simple widget that looks like to an existing one: the <b>Topic Subscriber</b>.
+          Our goal is showing what <b>ROSWeb</b> offers in order to make our job of creating ROS web widgets easier.
+        </p>
+        <p>There are two ways to be followed: Using pure <b>JavaScript</b> or using <b>TypeScript</b>. Both of them should have
+          the same result. It is just a matter of preference. If you already have something in JavaScript, it can be easier
+          the first way. If you want to take advantages of a typed JavaScript, the TypeScript language, the second way is
+          your choice.</p>
+        <p>At this point, it's supposed you have the environment already configured/working. If not, please take a look at
+          <a href="https://github.com/EESC-LabRoM/rosweb/blob/master/CONTRIBUTING.md" target="_blank">this page</a> and follow
+          the instructions.</p>
+      </div>
+
+      <h3>Step 1 - Creating a new Widget</h3>
+      <p>First of all, we'll create our template file and a simple stylesheet. It's a HTML code in a <code>.hbs</code> and a
+        <code>.scss</code> files. This step is the same for JavaScript and TypeScript widgets. Let's do it inside the folder
+        <code>/src/widgets/new_widget</code>.</p>
+      <p>There are important <code>&lt;meta&gt;</code> tags that must be added to make use of the available features of <b>ROSWeb</b>.
+        Those tags can be of the following types:</p>
+      <ul>
+        <li>ROS Topic</li>
+        <li>ROS Service</li>
+        <li>ROS Parameter</li>
+        <li>ROS Action Server</li>
+        <li>Widget Parameter</li>
+      </ul>
+      <p>For each tag in the template file, there'll be created one field to be selected or filled. For example, a ROS Topic
+        meta tag will generate a ROS Topic field selector for the widget.</p>
+      <p>Let's start with the following files:</p>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#step1-file1" role="tab">index.hbs</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#step1-file2" role="tab">main.scss</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="step1-file1" role="tabpanel">
+          <pre>
+                    <code class="html">
+&lt;div class=&quot;ros-widget&quot; data-widget-name=&quot;new-widget&quot;
+  data-min-height=&quot;150&quot; data-min-width=&quot;200&quot;
+  data-max-height=&quot;1200&quot; data-max-width=&quot;1600&quot;
+  data-height=&quot;300&quot; data-width=&quot;400&quot;&gt;
+
+  &lt;!--  META Tags to describe topics subscription --&gt;
+  &lt;meta data-ros-topic=&quot;1&quot; data-ros-topic-id=&quot;1&quot; data-ros-topic-desc=&quot;Topic to subscribe&quot;
+    data-ros-topic-type=&quot;&quot; data-ros-topic-chng=&quot;on_topic_selected&quot;/&gt;
+
+  &lt;!-- The content which could be manipulated by widget class --&gt;
+  &lt;div class=&quot;header&quot;&gt;
+    &lt;p class=&quot;name&quot;&gt;-- topic name --&lt;/p&gt;
+    &lt;p class=&quot;type&quot;&gt;-- topic type --&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;content&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+                    </code>
+                </pre>
+        </div>
+        <div class="tab-pane" id="step1-file2" role="tabpanel">
+          <pre>
+                    <code class="css">
+.cssWidgetContainer[data-widget-conf='0'] {
+  div[data-widget-name='new-widget'] {
+    border: 1px solid #333;
+  }
+}
+
+div[data-widget-name='new-widget'] {
+  float: left;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  div.header {
+    background-color: #aee;
+    border-bottom: 1px solid #333;
+    p {
+      text-align: center;
+      padding: 0 10px;
+    }
+    p.name {
+      font-weight: bold;
+    }
+    p.type {
+      font-style: italic;
+    }
+  }
+  div.content {
+    padding:10px;
+  }
+}
+                    </code>
+                </pre>
+        </div>
+      </div>
+
+      <p>Important aspects about the <code>/src/widgets/new_widget/index.hbs</code> file:</p>
+      <ul>
+        <li><b>data-widget-name</b> - Must be equal folder name, but using <code>-</code> instead of <code>_</code></li>
+        <li><b>data-min-*</b> - Sets minimum values for height and width</li>
+        <li><b>data-max-*</b> - Sets maximum values for height and width</li>
+        <li><b>data-height</b> / <b>data-width</b> - Sets default values for height and width</li>
+      </ul>
+
+      <p>About the <code>&lt;meta&gt;</code> tag:</p>
+      <ul>
+        <li><b>data-ros-topic="1"</b> - It means we want to select a topic to work with</li>
+        <li><b>data-ros-topic-id="1"</b> - A value to identify this selector, it is used by <b>ROSWeb</b> core</li>
+        <li><b>data-ros-topic-desc="Topic to subscribe"</b> - The description shown at <b>ROSWeb</b> widget settings</li>
+        <li><b>data-ros-topic-type=""</b> - The type of the topic we want to make available. Leave it empty to select any topic.</li>
+        <li><b>data-ros-topic-chng="on_topic_selected"</b> - The method will handle with the selected topic everytime it is changed</li>
+      </ul>
+
+
+      <h3>Step 2 - Programming the widget</h3>
+      <p>Now we already have the static content of the widget, so let's add the program that will treat the dynamic content.</p>
+      <p><b>ROSWeb</b> has a pattern to help you creating a class for your widget. This pattern is described at the file <code>/src/ts/interface/widget.ts</code></p>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#step2-file1" role="tab">/src/ts/interface/widget.ts</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="step2-file1" role="tabpanel">
+          <pre>
+            <code class="typescript">
+export interface WidgetInterface {
+
+  widgetInstanceId:number;
+  selector:string;
+
+  clbkCreated():void;
+  clbkResized():void;
+  clbkMoved():void;
+  clbkTab():void;
+
+  setSelector(): void;
+
+}
+            </code>
+          </pre>
+        </div>
+      </div>
+
+      <h4>About the widget class interface:</h4>
+      <div class="p-2">
+        <ul>
+          <li><b>widgetInstanceId</b> - It's used by <b>ROSWeb</b> core to manage all widgets</li>
+          <li><b>selector</b> - You must use this string to select the children of each instance of this widget, when using a
+            jQuery selector, for example</li>
+          <li><b>clbkCreated()</b> - This method is called when a new instance of your widget is created</li>
+          <li><b>clbkResized()</b> - This method is called when an instance of your widget is resized</li>
+          <li><b>clbkMoved()</b> - This method is called when an instance of your widget is moved</li>
+          <li><b>clbkTab(isTab)</b> - This method is called when the user changes the active tab, use the parameter <code>isTab</code>            to know if it is the widget tab</li>
+          <li><b>setSelector()</b> - This method is used to set the selector property</li>
+        </ul>
+      </div>
+
+      <p>Based on this file, let's create our own <code>main.js</code> / <code>main.ts</code> file to describe our widget class.</p>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#step2-file2" role="tab">main.js</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#step2-file3" role="tab">main.ts</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="step2-file2" role="tabpanel">
+          <pre>
+            <code class="javascript">
+var WidgetNewWidget = function (widgetInstanceId) {
+  // Mandatory properties
+  var self = this; // local variable to represent the object
+  this.widgetInstanceId = widgetInstanceId; // setting the ID of the widget
+  this.selector = ".jsWidgetContainer[data-widget-instance-id=" + self.widgetInstanceId + "]"; // setting the HTML selector
+
+  // Mandatory callback methods
+  this.clbkCreated = function () { };
+  this.clbkConfirm = function () { };
+  this.clbkResized = function () { };
+  this.clbkMoved = function () { };
+  this.clbkTab = function (isMyTab) { };
+
+  // Subscriptions Callbacks
+  this.topic1 = new ROSLIB.Topic({
+    ros: ros,
+    name: "",
+    messageType: ""
+  });
+
+  this.on_topic_selected = function (selectedTopic) {
+    self.topic1.unsubscribe();
+    self.topic1.name = selectedTopic;
+    var elem = $(self.selector).find(".datatopic1");
+    $(elem).html("");
+
+    if (selectedTopic == "") return;
+
+    ros.getTopicType(selectedTopic, function (type) {
+      self.topic1.messageType = type;
+      $(self.selector).find("p.name").html(selectedTopic);
+      $(self.selector).find("p.type").html(type);
+      self.topic1.subscribe(self.callback);
+    }, function (e) {
+      throw new Error(e);
+    });
+  };
+
+  this.callback = function (message) {
+    $(self.selector).find("div.content").html(JSON.stringify(message, null, 4));
+  }
+}
+            </code>
+          </pre>
+          <h4>About main.js</h4>
+          <div class="p-2">
+            <p>At the first line: <code>var WidgetNewWidget = function (widgetInstanceId) {</code>, it is necessary to create
+              the class using the prefix <code>Widget</code> plus the name of the widget without <code>-</code> or <code>_</code>,
+              but writting the first words upper-cased.</p>
+            <p>Then, we set the mandatory properties and callbacks, as commented in the code</p>
+            <p>We create a ROSLIB Topic object, because we want to subscribe a ROS Topic with this widget. It's important to
+              notice that we have the freedom to use <code>Roslib.js</code> as we wish inside the widget. <a href="https://github.com/RobotWebTools/roslibjs"
+                target="_blank">More about Roslib.js.</a></p>
+            <p>At the line <code>this.on_topic_selected = function (selectedTopic) {</code>, we create the method that will
+              be triggered when the user selects a topic to subscribe. In this method we subscribe the topic and set a callback
+              method (<code>self.callback(message)</code>) that will treat the messages as it comes.</p>
+            <p>In this method, we are searching for the type of the topic to show through the HTML content. We are using the
+              property
+              <code>self.selector</code> to replace the content of a single instance of the widget. (If you have 2 instances
+              of this widget, it could be a problem, without the selector)</p>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="step2-file3" role="tabpanel">
+          <pre>
+            <code class="typescript">
+///&lt;reference path="../../ts/typings/tsd.d.ts" /&gt;
+
+import { WidgetParent } from '../../ts/classmodel/widget'
+
+declare var ros: ROSLIB.Ros;
+
+class WidgetNewWidget extends WidgetParent {
+  constructor(widgetInstanceId: number) {
+    super(widgetInstanceId);
+    this.topic = new ROSLIB.Topic({ ros: ros, name: "", messageType: "" });
+  }
+
+  // Properties
+  public topic: ROSLIB.Topic;
+
+  // Mandatory callbacks
+  clbkCreated(): void {
+  }
+  clbkResized(): void {
+  }
+  clbkMoved(): void {
+  }
+  clbkTab(): void {
+  }
+  clbkConfirm(): void {
+  }
+
+  // Subscription Callbacks
+  public on_topic_selected(selectedTopic: string): void {
+    this.topic.unsubscribe();
+    this.topic.name = selectedTopic;
+    var elem = $(this.selector).find(".content");
+    $(elem).html("");
+
+    if (selectedTopic == "") return;
+
+    ros.getTopicType(selectedTopic, (type): void => {
+      this.topic.messageType = type;
+      $(this.selector).find("p.name").html(selectedTopic);
+      $(this.selector).find("p.type").html(type);
+      this.topic.subscribe(this.callback);
+    }, (e): void => {
+      throw new Error(e);
+    });
+  }
+
+  callback = (message: any): void => {
+    $(this.selector).find("div.content").html(JSON.stringify(message, null, 4));
+  }
+}
+
+window["WidgetNewWidget"] = WidgetNewWidget;
+
+            </code>
+          </pre>
+          <h4>About main.ts</h4>
+          <div class="p-2">
+            <p>First of all, we need to reference all JavaScript libraries definitions: <code>///&lt;reference path="../../ts/typings/tsd.d.ts" /&gt;</code>.
+              Then, we are able to use Handlebars, jQuery and ROSLib inside our widget class.</p>
+
+            <p>We need also to import the interface that we are goind to extend: <code>import { WidgetParent } from '../../ts/classmodel/widget'</code></p>
+
+            <p>Then we define our class: <code>class WidgetNewWidget extends WidgetParent {</code>, it is necessary to create
+              the class using the prefix <code>Widget</code> plus the name of the widget without <code>-</code> or <code>_</code>              and writting the first words upper-cased.</p>
+
+            <p>At the constructor, we call the parent construct to set some variables, like <code>widgetInstanceId</code> and
+              <code>selector</code>. We also defines a topic object to handle a ROS subscription.</p>
+
+            <p>After the mandatory callbacks, we define a method to handle the topic selection change: <code>public on_topic_selected(selectedTopic: string): void {</code></p>
+
+            <p>It's important to notice that: For the methods that needs a callback, like <code>ros.getTopicType</code> and
+              <code>this.topic.subscribe</code>, we use <a href="https://www.typescriptlang.org/docs/handbook/functions.html#this-and-arrow-functions"
+                target="_blank">Arrow Functions</a>, to avoid losing <code>this</code> object, that is our instance reference.</p>
+            <p>Finally, at the end of the final, after the class declaration, we set the class globally: <code>window["WidgetNewWidget"] = WidgetNewWidget;</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Step 3 - See the result</h3>
+      <div class="p-2">
+        <p>Now that we have the the 3 necessary files for a widget, let's see it working.</p>
+        <p>Before doing that, we need to add our widget to the <code>/src/ts/model/workspace.ts</code> file. At the end of the
+          method <code>_initWorkspace</code>, add the following:</p>
+        <pre>
+          <code class="typescript">
+wg = new WidgetGroup("Development");
+new Widget(wg.id, "New Widget", "NewWidget", "./widgets/new_widget
+          </code>
+        </pre>
+        <p>At your terminal, inside rosweb project folder, run <code>gulp</code>.</p>
+        <p>Open another terminal and run <code>gulp watch</code>, so future changes will be compiled and the application will
+          be reloaded.</p>
+        <p>Launch Rosbridge Websocket Server (<code>roslaunch rosbridge_server rosbridge_websocket.launch</code>)</p>
+        <p>Open the application at the browser (<code>http://localhost:8000</code>)</p>
+        <p>Your widget must be shown at the bottom of widgets menu:</p>
+        <img src="img/development_new_widget_fig01.png" />
+        <br>
+        <p>Click on your widget to create one of it. You should see something like the image below:</p>
+        <img src="img/development_new_widget_fig02.png" />
+        <br>
+        <p>At the widget settings, on the right, you may see the topic selector with the description we set on the template
+          file.</p>
+        <p>Select any topic and its messages will be updated at the widget <code>div.content</code> element.</p>
+        <img src="img/development_new_widget_fig03.png" />
+      </div>
+
+      <h4>Step 4 - Debug and errors detection</h4>
+      <div class="p-2">
+        <p>Your browser will be your best debug tool. Google Chrome has been used from the beggining for the development of
+          <b>ROSWeb</b>.</p>
+        <p>In this project, no console message was disabled, so all JavaScript and TypeScript errors and warnings can be seen at the browser console.</p>
+      </div>
+
+
+      <h3>Did you have any problem reading this documents?</h3>
+      <p>This page is generated by a GitHub repository, you can submit changes here or even create an Issue and we'll fix it
+        as soon as possible!</p>
+      <a class="btn btn-block btn-social btn-github" target="_blank" href="http://www.github.com/EESC-LabRoM/rosweb/issues">
+        <span class="fa fa-github"></span> ROSWeb Page Repository
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <footer>
+      <p>&copy; Company 2016</p>
+    </footer>
+  </div>
+  <!-- /container -->
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
+    crossorigin="anonymous"></script>
+  <script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
+    crossorigin="anonymous"></script>
+  <script src="css/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+  <script type="text/javascript">
+    hljs.configure({
+      tabReplace: '  ',
+      useBR: ''
+    });
+    $(document).ready(function () {
+      $('pre code').each(function (i, block) {
+        hljs.highlightBlock(block);
+      });
+    });
+  </script>
+</body>
+
+</html>
